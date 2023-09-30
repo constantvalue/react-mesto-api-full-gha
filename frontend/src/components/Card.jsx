@@ -16,14 +16,14 @@ export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   };
 
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = card.owner._id === userContext._id;
+  const isOwn = card.owner === userContext._id;
   // Создаём переменную, которую после зададим в `className` для кнопки мусорки
   const cardTrashButtonClassName = `element__trash-button ${
     isOwn && "element___trash-button_visibility_visible"
   }`;
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = card.likes.some((i) => i._id === userContext._id);
+  const isLiked = card.likes.some((i) => i === userContext._id);
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `element__like-button ${
     isLiked && "element__like-button_active"

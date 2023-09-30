@@ -116,7 +116,7 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
@@ -146,7 +146,10 @@ function App() {
     api
       .updateUserInfo(data)
       .then((res) => {
-        setCurrentUser(res);
+        console.log(res)
+        setCurrentUser(
+          res.data
+        );
         closeAllPopups();
       })
       .catch((error) => {
@@ -158,7 +161,7 @@ function App() {
     api
       .updateAvatar(data)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
         closeAllPopups();
       })
       .catch((error) => {
@@ -187,7 +190,7 @@ function App() {
           // setUserEmail(res.data.email);
           // setLoggedIn(true);
           // navigate("/", { replace: true });
-          handleLogin(res.data.email);
+          handleLogin(res.email);
         })
         .catch((error) => {
           console.log(error);

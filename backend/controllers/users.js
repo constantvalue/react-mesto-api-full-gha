@@ -12,7 +12,7 @@ const {
 module.exports.getUsers = (req, res, next) => {
   User.find({})
   // res.send по умолчанию имеет status(200)
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send(users))
     // ловим ошибки если сервер пятисотит
     .catch(next);
 };
@@ -21,7 +21,7 @@ module.exports.getUsers = (req, res, next) => {
 module.exports.getUsersMe = (req, res, next) => {
   User.findById(req.user._id)
   // res.send по умолчанию имеет status(200)
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     // ловим ошибки если сервер пятисотит
     .catch(next);
 };
@@ -62,7 +62,7 @@ module.exports.getUserById = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Нет пользователя с таким id');
       } else {
-        res.send({ data: user });
+        res.send(user);
       }
     })
     .catch((err) => {

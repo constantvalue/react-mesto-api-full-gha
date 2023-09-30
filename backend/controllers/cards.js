@@ -45,7 +45,7 @@ module.exports.deleteCard = (req, res, next) => {
         throw new ForbiddenError('Эта карточка вам не принадлежит');
       }
       // card.remove().then(res.send(card));
-      return Card.findByIdAndRemove(req.params.cardId).then(() => res.send({ data: card }));
+      return Card.findByIdAndRemove(req.params.cardId).then(() => res.send(card));
     })
     .catch((err) => {
       if (err.name === 'CastError') {

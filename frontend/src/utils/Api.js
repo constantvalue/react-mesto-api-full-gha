@@ -97,7 +97,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://api.voronin.nomoredomainsrocks.ru",
   headers: {
     // "Authorization": `Bearer ${token}`,
     // "Content-Type": "application/json",

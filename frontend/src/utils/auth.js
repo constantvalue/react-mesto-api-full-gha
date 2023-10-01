@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "http://api.voronin.nomoredomainsrocks.ru";
 
 const returnResponse = (res) => {
   if (res.ok) {

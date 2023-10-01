@@ -1,6 +1,8 @@
 // эту мидлвару взял из теории по спринту.
 
 const jwt = require('jsonwebtoken');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 const UnathorisedError = require('../errors/UnathorisedError');
 
 module.exports = (req, res, next) => {
@@ -14,7 +16,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, 'top_secret');
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'top_secret');
   } catch (err) {
     throw new UnathorisedError(('Авторизуйтесь'));
   }
@@ -23,3 +25,6 @@ module.exports = (req, res, next) => {
 
   next(); // пропускаем запрос дальше
 };
+
+console.log(process.env.NODE_ENV);
+// console.log(process.env.env_token);

@@ -96,15 +96,6 @@ class Api {
   }
 }
 
-// //Экспортируем именно экземпляр, а не весь класс. Экспорт у класса убрал.
-// export const api = new Api({
-//   baseUrl: "http://localhost:3000",
-//   headers: {
-//     authorization: "37444284-40d0-47c4-870b-23d568f81278",
-//     "Content-Type": "application/json",
-//   },
-// });
-
 export const api = new Api({
   baseUrl: "http://localhost:3000",
   headers: {

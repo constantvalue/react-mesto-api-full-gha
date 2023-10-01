@@ -7,6 +7,7 @@ const { celebrate, errors, Joi } = require('celebrate');
 const { addUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { regEx } = require('./constants');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const NotFoundError = require('./errors/NotFoundError');
 
@@ -27,6 +28,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
 });
 
 // эти роуты не требуют защиты авторизацией.
+
+app.use(requestLogger);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -58,6 +61,8 @@ app.use('/cards', require('./routes/cards'));
 // последний эндпоинт тест. Обработка несуществующего пути.
 app.use('/*', (req, res, next) => next(new NotFoundError('Страница не существует')));
 
+app.use(errorLogger);
+
 // обрабатываем ошибки которые генерирует celebrate.
 // Этот метод вернет тело ошибки с указанием причины ошибки валидации.
 app.use(errors());
@@ -78,5 +83,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT);
-
-// 6511771048b240115a033721

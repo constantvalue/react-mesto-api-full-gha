@@ -18,13 +18,13 @@ module.exports = (req, res, next) => {
   try {
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'top_secret');
   } catch (err) {
-    throw new UnathorisedError(('Авторизуйтесь'));
+    return next(new UnathorisedError(('Авторизуйтесь')));
   }
 
   req.user = payload; // записываем пейлоуд в объект запроса
 
-  next(); // пропускаем запрос дальше
+  return next(); // пропускаем запрос дальше
 };
 
-console.log(process.env.NODE_ENV);
-// console.log(process.env.env_token);
+// console.log(process.env.NODE_ENV);
+// // console.log(process.env.env_token);

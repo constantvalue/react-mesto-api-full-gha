@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.voronin.nomoredomainsrocks.ru";
+export const BASE_URL = "https://api.voronin.nomoredomainsrocks.ru";
 
 const returnResponse = (res) => {
   if (res.ok) {
